@@ -1,0 +1,22 @@
+{
+  "name": "js-tool-function",
+  "version": "1.0.0",
+  "description": "JavaScript 常用工具函数集",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenchengwork/JS-Tool-Function.git"
+  },
+  "author": "chencheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenchengwork/JS-Tool-Function/issues"
+  },
+  "homepage": "https://github.com/chenchengwork/JS-Tool-Function#readme"
+}
