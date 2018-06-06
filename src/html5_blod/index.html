@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html5_blod</title>
+</head>
+<body>
+
+<script type="module">
+    import {
+        stringToBlob,
+        typeArrayToBlob,
+        blobToString,
+        blobToArrayBuffer ,
+        getBase64Image,
+        dataURLtoBlob,
+        createDownloadFile,
+    } from './blod.js';
+
+    const stringBlob = stringToBlob(("hello world"));
+    console.log("stringToBlob:", stringBlob);
+
+    const typeArrayBlob = typeArrayToBlob(new Uint16Array([97, 32, 72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33]));
+    console.log('typeArrayToBlob:', typeArrayBlob);
+
+    blobToString(typeArrayBlob).then((resp) => console.log('blobToString:', resp), (resp) => console.error(resp));
+
+    blobToArrayBuffer(stringBlob).then((resp) => console.log('blobToArrayBuffer:', resp), (resp) => console.error(resp));
+
+
+    //----------图片base64和二进制转换----------------
+    const image = new Image();
+    image.src = "./img/openbd_vector.png";
+    image.onload = function() {
+        //这样就获取到了文件的Base64字符串
+        const base64 = getBase64Image(image);
+        console.log("getBase64Image:", base64);
+
+
+        //Base64字符串转二进制
+        const file = dataURLtoBlob(base64);
+        console.log('dataURLtoBlob:', file);
+    }
+
+
+    //----------生成下载文件----------------
+    createDownloadFile("HELLO WORLD!", {fileName: "download.txt", linkDesc: "下载"})
+</script>
+
+</body>
+</html>
