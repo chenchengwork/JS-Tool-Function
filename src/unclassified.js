@@ -1,5 +1,5 @@
 /**
- * 减速函数
+ * 减速节流函数
  * @param {Function} fn 需要延迟执行的函数
  * @param {Number} time 延迟时间毫秒
  * @param {Object} context
@@ -38,4 +38,33 @@ exports.throttle = (fn, time, context) => {
     }
 
     return wrapperFn;
+};
+
+
+/**
+ * 防抖函数
+ * @param {Function} fn     回调函数
+ * @param {Number} delay    延迟事件
+ * @param {Object} [context]  回调函数上下文
+ * @returns {Function}
+ */
+exports.debounce = (fn, delay, context) => {
+
+    let timeout;
+
+    return function(e){
+
+        clearTimeout(timeout);
+
+        context = context || this;
+        let args = arguments
+
+        timeout = setTimeout(function(){
+
+            fn.apply(context, args);
+
+        },delay)
+
+    };
+
 };
