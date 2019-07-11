@@ -82,3 +82,35 @@ exports.generateUUID = (prefix = null) => {
 
     return prefix ? prefix + "-" + uuid : uuid;
 };
+
+/**
+ *  生成无限级分类数据
+ *  const sourceData = [
+        {
+            id: "1",
+            parentId: "0",
+            title: "aa"
+        },
+        {
+            id: "2",
+            parentId: "1",
+            title: "bb"
+        },
+        {
+            id: "3",
+            parentId: "0",
+            title: "cc"
+        },
+    ];
+    convertDataToTree(sourceData, "0");
+ */
+exports.convertDataToTree = (data, id) => {
+    let res = [];
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].parentId == id) {
+            res.push(data[i]);
+            data[i].children = convertDataToTree(data, data[i].id);
+        }
+    }
+    return res;
+};
